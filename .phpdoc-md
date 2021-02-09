@@ -1,0 +1,13 @@
+<?php
+return (object)[
+    'rootNamespace' => 'Cacko\Yii2\Widgets\MonacoEditor',
+    'destDirectory' => 'docs',
+    'format' => 'github',
+    'classes' => [
+        'Cacko\Yii2\Widgets\MonacoEditor\MonacoEditorAsset',
+        'Cacko\Yii2\Widgets\MonacoEditor\EditorAsset',
+        'Cacko\Yii2\Widgets\MonacoEditor\DiffEditorAsset',
+        'Cacko\Yii2\Widgets\MonacoEditor\Widget\DiffEditor',
+        'Cacko\Yii2\Widgets\MonacoEditor\Widget\Editor',
+    ],
+];

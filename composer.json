@@ -1,0 +1,36 @@
+{
+  "name": "cacko/yii2-widget-monaco",
+  "description": "Yii2 widget for Monaco Editor",
+  "license": "MIT",
+  "type": "yii2-extension",
+  "authors": [
+    {
+      "name": "cacko",
+      "email": "dev@cacko.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Cacko\\Yii2\\Widgets\\MonacoEditor\\": "src/"
+    }
+  },
+  "require": {
+    "php": "~7.4.14",
+    "ext-fileinfo": "*",
+    "yiisoft/yii2": "~2.0.41",
+    "npm-asset/monaco-editor": "^0.21.2",
+    "scssphp/scssphp": "^1.4"
+  },
+  "extra": {
+    "bootstrap": "Cacko\\Yii2\\Widgets\\MonacoEditor\\Bootstrap"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "require-dev": {
+    "clean/phpdoc-md": "^0.19.1"
+  }
+}
