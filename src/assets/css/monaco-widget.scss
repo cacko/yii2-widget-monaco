@@ -2,6 +2,18 @@
     overflow: hidden;
     position: relative;
 
+    .editor-dom {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.cacko-yii2-widgets-monaco-editor-widget-diff-editor {
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+.cacko-widget-monaco {
     .theme-selector {
         position: absolute;
         bottom: 1rem;
@@ -16,16 +28,6 @@
             color: #fff;
         }
     }
-
-    .editor-dom {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.cacko-yii2-widgets-monaco-editor-widget-diff-editor {
-    padding-bottom: 2rem;
-    position: relative;
 
     .layout-selector {
         position: absolute;

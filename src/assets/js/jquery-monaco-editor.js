@@ -64,6 +64,7 @@
 
         registerListeners() {
             this._themeSelector.on('click', $.proxy(this.onThemeSelector, this));
+            this._target.on('updated.theme.monaco', $.proxy(this.onThemeUpdate, this));
             if (this.options.resizable) {
                 this._target.css({
                     resize: 'vertical',
@@ -82,20 +83,24 @@
 
         onThemeSelector() {
             const theme = this._themeSelector.hasClass('on-dark') ? this.options.themes.light : this.options.themes.dark;
-            this._themeSelector.toggleClass('on-dark');
+            this._themeSelector.toggleClass('on-dark', this.options.themes.dark === theme);
             monaco.editor.setTheme(theme);
             this.saveTheme(theme);
+            $('.cacko-widget-monaco').not(`#${this._target.attr('id')}`).trigger('updated.theme.monaco', [theme]);
+        }
 
+        onThemeUpdate(theme) {
+            this._themeSelector.toggleClass('on-dark', this.options.themes.dark === theme);
         }
 
         saveTheme(theme) {
             this._themeInterval && clearInterval(this._themeInterval);
             this._themeInterval = setInterval(() =>
-                this.saveSettings({theme}) && clearInterval(this._themeInterval), 3000);
+                this.saveSettings({ theme }) && clearInterval(this._themeInterval), 3000);
         }
 
         saveHeight(height) {
-            this.saveSettings({height});
+            this.saveSettings({ height });
         }
 
         saveSettings(payload) {

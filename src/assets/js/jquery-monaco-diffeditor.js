@@ -8,6 +8,7 @@
         _left = $();
         _right = $();
         _themeInterval = null;
+        _layoutSelector = $();
         _sideBySideInterval = null;
         _initialized = false;
         _navigator = null;
@@ -17,6 +18,7 @@
             this._target = options._target;
             this.options = options;
             this._themeSelector = this._target.find(this.options.themeSelector);
+            this._layoutSelector = this._target.find(this.options.layoutSelector);
             this._renderSideBySide = this.options.renderSideBySide;
             this._left = this._target.find(this.options.inputLeftSelector).first();
             this._right = this._target.find(this.options.inputRightSelector).first();
@@ -56,8 +58,9 @@
 
         registerListeners() {
             this._themeSelector.on('click', $.proxy(this.onThemeSelector, this));
-            this._target.on('click', this.options.layoutSelector, $.proxy(this.toggleLayout, this));
+            this._layoutSelector.on('click', $.proxy(this.toggleLayout, this));
             this._target.on('sideBySide.monacoDiffEditor', $.proxy(this.onSideBySide, this));
+            this._target.on('updated.theme.monaco', $.proxy(this.onThemeUpdate, this));
             if (this.options.resizable) {
                 this._target.css({
                     resize: 'vertical',
@@ -80,8 +83,14 @@
         onThemeSelector() {
             const theme = this._themeSelector.hasClass('on-dark') ? this.options.themes.light : this.options.themes.dark;
             this._themeSelector.toggleClass('on-dark');
-            monaco.editor.setTheme(theme);
+            this._layoutSelector.toggleClass('on-dark');
+            this.monaco.editor.setTheme(theme);
             this.saveTheme(theme);
+            $('.cacko-widget-monaco').not(`#${this._target.attr('id')}`).trigger('updated.theme.monaco', [theme]);
+        }
+
+        onThemeUpdate(e, theme) {
+            this._layoutSelector.toggleClass('on-dark', this.options.themes.dark === theme);
         }
 
         toggleLayout() {

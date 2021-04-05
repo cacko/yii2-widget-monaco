@@ -5,6 +5,7 @@ namespace Cacko\Yii2\Widgets\MonacoEditor\Widget;
 
 use Cacko\Yii2\Widgets\MonacoEditor\DiffEditorAsset;
 use Cacko\Yii2\Widgets\MonacoEditor\MonacoEditorAsset;
+use yii\base\Model;
 use yii\helpers\Html;
 
 /**
@@ -14,9 +15,9 @@ use yii\helpers\Html;
 class DiffEditor extends Editor
 {
 
-    public $title;
-    public $parent;
-    public $attribute;
+    public string $title = '';
+
+    public Model $parent;
 
     /** @var array
      * https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.idiffeditorconstructionoptions.html
@@ -47,7 +48,18 @@ class DiffEditor extends Editor
 
     protected function renderContent(): void
     {
-        echo Html::tag('i', '', ['class' => ['layout-selector icon-editor-shuffle', $this->getTheme() === MonacoEditorAsset::THEME_DARK ? 'on-dark' : '']]);
+        if ($this->showIcon) {
+            echo Html::tag(
+                'i',
+                '',
+                [
+                    'class' => [
+                        'layout-selector icon-editor-shuffle',
+                        $this->getTheme() === MonacoEditorAsset::THEME_DARK ? 'on-dark' : ''
+                    ]
+                ]
+            );
+        }
         echo Html::beginTag('div', ['class' => 'row']);
         echo Html::tag('div', $this->evalValue('title', $this->parent), ['class' => 'col-xs-6']);
         echo Html::tag('div', $this->evalValue('title', $this->model), ['class' => 'col-xs-6 text-right']);

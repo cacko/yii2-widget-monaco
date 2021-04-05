@@ -10,6 +10,8 @@ use yii\web\AssetBundle;
 class EditorAsset extends AssetBundle
 {
 
+    public $sourcePath = __DIR__ . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR;
+
     public $js = [
         'js/jquery-monaco-editor.js'
     ];
@@ -23,13 +25,6 @@ class EditorAsset extends AssetBundle
         'yii\web\YiiAsset',
         'Cacko\Yii2\Widgets\MonacoEditor\MonacoEditorAsset'
     ];
-
-    public function init()
-    {
-        $this->sourcePath = __DIR__ . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR;
-        parent::init();
-    }
-
     /**
      * @param ViewContextInterface $widget
      * @param array $options

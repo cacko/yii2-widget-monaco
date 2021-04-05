@@ -6,7 +6,6 @@ use Cacko\Yii2\Widgets\MonacoEditor\controllers\ControllerInterface;
 use Cacko\Yii2\Widgets\MonacoEditor\EditorAsset;
 use Cacko\Yii2\Widgets\MonacoEditor\models\SettingsInterface;
 use Cacko\Yii2\Widgets\MonacoEditor\MonacoEditorAsset;
-use Cacko\Yii2\Widgets\MonacoEditor\rules\UrlRuleInterface;
 use ReflectionException;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -45,6 +44,8 @@ class Editor extends InputWidget
     public $userSettingsUrl;
 
     public string $theme = '';
+
+    public bool $showIcon = true;
 
     /** @var array
      * https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html
@@ -132,7 +133,7 @@ class Editor extends InputWidget
      */
     public function run(): void
     {
-        echo Html::beginTag('div', ['id' => $this->id, 'class' => static::getTargetClass()]);
+        echo Html::beginTag('div', ['id' => $this->id, 'class' => [static::getTargetClass(), 'cacko-widget-monaco']]);
         $this->renderContent();
         echo Html::tag('div', '', ['id' => $this->editorDomId, 'class' => 'editor-dom']);
         echo Html::endTag('div');
@@ -141,7 +142,18 @@ class Editor extends InputWidget
 
     protected function renderContent(): void
     {
-        echo Html::tag('i', '', ['class' => ['theme-selector icon-editor-contrast', $this->getTheme() === MonacoEditorAsset::THEME_DARK ? 'on-dark' : '']]);
+        if ($this->showIcon) {
+            echo Html::tag(
+                'i',
+                '',
+                [
+                    'class' => [
+                        'theme-selector icon-editor-contrast',
+                        $this->getTheme() === MonacoEditorAsset::THEME_DARK ? 'on-dark' : ''
+                    ]
+                ]
+            );
+        }
         if ($this->model) {
             echo Html::activeHiddenInput($this->model, $this->attribute);
         } else {
