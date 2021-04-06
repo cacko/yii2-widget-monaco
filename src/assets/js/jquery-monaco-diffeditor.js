@@ -41,7 +41,6 @@
 
         initEditor() {
             this._target.css({
-                width: '100%',
                 height: this.options.height || '25rem',
             });
             return new Promise(resolve => {
@@ -164,7 +163,6 @@
         editorId: null,
         inputLeftSelector: '[name="parent"]',
         inputRightSelector: '[name="current"]',
-        sideBySideSelector: '[name="side-by-side"]',
         userSettingsUrl: '#',
         resizable: true,
         minHeight: '5rem',

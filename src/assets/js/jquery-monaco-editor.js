@@ -31,7 +31,6 @@
 
         initEditor() {
             this._target.css({
-                width: this.options.width || '100%',
                 height: this.options.height || '100%',
             });
             return new Promise(resolve => {
@@ -86,7 +85,7 @@
             this._themeSelector.toggleClass('on-dark', this.options.themes.dark === theme);
             monaco.editor.setTheme(theme);
             this.saveTheme(theme);
-            $('.cacko-widget-monaco').not(`#${this._target.attr('id')}`).trigger('updated.theme.monaco', [theme]);
+            $(this.options.broadcastSelector).not(`#${this._target.attr('id')}`).trigger('updated.theme.monaco', [theme]);
         }
 
         onThemeUpdate(theme) {
@@ -165,6 +164,7 @@
         width: null,
         useFullHeight: '',
         themes: {},
+        broadcastSelector: '.cacko-widget-monaco'
     };
 })
     (jQuery);

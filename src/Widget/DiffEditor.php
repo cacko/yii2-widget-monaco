@@ -4,7 +4,9 @@ namespace Cacko\Yii2\Widgets\MonacoEditor\Widget;
 
 
 use Cacko\Yii2\Widgets\MonacoEditor\DiffEditorAsset;
+use Cacko\Yii2\Widgets\MonacoEditor\models\MonacoOptions;
 use Cacko\Yii2\Widgets\MonacoEditor\MonacoEditorAsset;
+use Yii;
 use yii\base\Model;
 use yii\helpers\Html;
 
@@ -12,17 +14,14 @@ use yii\helpers\Html;
  *
  * @property-read null|string $renderSideBySide
  */
-class DiffEditor extends Editor
+class DiffEditor extends AbstractEditor
 {
 
     public string $title = '';
 
     public Model $parent;
 
-    /** @var array
-     * https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.idiffeditorconstructionoptions.html
-     */
-    public $editorOptions = [];
+    public bool $readOnly = true;
 
     protected function getRenderSideBySide(): bool
     {
@@ -30,12 +29,16 @@ class DiffEditor extends Editor
         return $userSettings->getRenderSideBySide();
     }
 
-    protected function getEditorConfig(): array
+    protected function getEditorConfig(): MonacoOptions
     {
-        return array_merge(parent::getEditorConfig(), [
-            'readOnly' => true,
-            'renderSideBySide' => $this->getRenderSideBySide()
-        ]);
+        return Yii::createObject(array_merge(
+            parent::getEditorConfig()->toArray(),
+            [
+                'class' => MonacoOptions::class,
+                'readOnly' => true,
+                'renderSideBySide' => $this->getRenderSideBySide()
+            ]
+        ));
     }
 
     /**
@@ -48,13 +51,16 @@ class DiffEditor extends Editor
 
     protected function renderContent(): void
     {
+
+        $defaults = $this->defaults;
         if ($this->showIcon) {
             echo Html::tag(
                 'i',
                 '',
                 [
                     'class' => [
-                        'layout-selector icon-editor-shuffle',
+                        $defaults->getLayoutIcon(),
+                        'icon-editor-shuffle',
                         $this->getTheme() === MonacoEditorAsset::THEME_DARK ? 'on-dark' : ''
                     ]
                 ]
