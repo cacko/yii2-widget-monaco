@@ -75,10 +75,10 @@
             model.setValue(val);
         }
 
-        loadNew(lang) {
+        loadNew(original, modified, lang) {
             return new Promise(resolve => {
-                this._left = this._target.find(this.options.inputLeftSelector).first();
-                this._right = this._target.find(this.options.inputRightSelector).first();
+                this._left = this._target.find(this.options.inputLeftSelector).first().val(original);
+                this._right = this._target.find(this.options.inputRightSelector).first().val(modified);
                 const model = this._editor.getModel();
                 model && model.dispose();
                 this._model = monaco.editor.createModel({

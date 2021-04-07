@@ -46,9 +46,9 @@
             });
         }
 
-        loadNew(lang) {
+        loadNew(source, lang) {
             return new Promise(resolve => {
-                this._input = this._target.find(`${this.options.inputSelector}`);
+                this._input = this._target.find(`${this.options.inputSelector}`).val(source);
                 const model = this._editor.getModel();
                 if (model) {
                     model.dispose();
