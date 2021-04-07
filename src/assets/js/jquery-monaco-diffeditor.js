@@ -79,8 +79,6 @@
             return new Promise(resolve => {
                 this._left = this._target.find(this.options.inputLeftSelector).first().val(original);
                 this._right = this._target.find(this.options.inputRightSelector).first().val(modified);
-                const model = this._editor.getModel();
-                model && model.dispose();
                 this._model = monaco.editor.createModel({
                     original: monaco.editor.createModel(this._left.val(), lang),
                     modified: monaco.editor.createModel(this._right.val(), lang),
