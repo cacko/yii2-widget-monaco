@@ -79,11 +79,10 @@
             return new Promise(resolve => {
                 this._left = this._target.find(this.options.inputLeftSelector).first().val(original);
                 this._right = this._target.find(this.options.inputRightSelector).first().val(modified);
-                this._model = monaco.editor.createModel({
+                this._editor.setModel({
                     original: monaco.editor.createModel(this._left.val(), lang),
                     modified: monaco.editor.createModel(this._right.val(), lang),
                 });
-                this._editor.setModel(this._model);
                 // this._model.onDidChangeContent($.proxy(this.onEdit, this));
                 resolve(true);
             });
