@@ -46,13 +46,12 @@
             });
         }
 
-        loadNew(input, lang) {
+        loadNew(lang) {
             return new Promise(resolve => {
-                this._input = $(input);
+                this._input = this._target.find(`${this.options.inputSelector}`);
                 const model = this._editor.getModel();
                 if (model) {
                     model.dispose();
-                    // this._editor.dispose();
                 }
                 this._model = monaco.editor.createModel(this._input.val(), lang);
                 this._editor.setModel(this._model);
