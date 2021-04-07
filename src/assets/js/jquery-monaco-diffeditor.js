@@ -42,7 +42,7 @@
 
         initEditor() {
             this._target.css({
-                height: this.options.height || '25rem',
+                height: this.options.height || '100%',
             });
             return new Promise(resolve => {
                 require(["vs/editor/editor.main"], () => {
