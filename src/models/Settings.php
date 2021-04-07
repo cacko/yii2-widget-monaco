@@ -17,7 +17,8 @@ class Settings extends Model implements SettingsInterface
 
     const COOKIES = [
         'theme' => 'editor-settings-theme',
-        'height' => 'editor-settings-height',
+        'editorHeight' => 'editor-settings-height',
+        'diffViewerHeight' => 'diff-viewer-settings-height',
         'renderSideBySide' => 'editor-settings-renderSideBySide',
     ];
 
