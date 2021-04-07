@@ -41,6 +41,13 @@ class DiffEditor extends AbstractEditor
         ));
     }
 
+
+    protected function getHeight(): string
+    {
+        $userSettings = $this->userSettings;
+        $userHeight = $userSettings->getDiffViewerHeight();
+        return !empty($userHeight) ? $userHeight : ($this->height ?: 300);
+    }
     /**
      * @throws \ReflectionException
      */

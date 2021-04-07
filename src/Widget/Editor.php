@@ -17,6 +17,13 @@ class Editor extends AbstractEditor
         EditorAsset::registerWidget($this, $this->config);
     }
 
+    protected function getHeight(): string
+    {
+        $userSettings = $this->userSettings;
+        $userHeight = $userSettings->getEditorHeight();
+        return !empty($userHeight) ? $userHeight : ($this->height ?: 300);
+    }
+
     protected function renderContent(): void
     {
         $defaults = $this->defaults;

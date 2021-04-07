@@ -9,7 +9,9 @@ class Settings extends Model implements SettingsInterface
 {
     public string $theme = MonacoEditorAsset::THEME_DARK;
 
-    public int $height = 0;
+    public int $editorHeight = 0;
+
+    public int $diffViewerHeight = 0;
 
     public bool $renderSideBySide = false;
 
@@ -46,9 +48,14 @@ class Settings extends Model implements SettingsInterface
         return $this->theme;
     }
 
-    public function getHeight(): int
+    public function getEditorHeight(): int
     {
-        return $this->height;
+        return $this->editorHeight;
+    }
+
+    public function getDiffViewerHeight(): int
+    {
+        return $this->diffViewerHeight;
     }
 
     public function setTheme(string $value): SettingsInterface
@@ -57,9 +64,15 @@ class Settings extends Model implements SettingsInterface
         return $this;
     }
 
-    public function setHeight(int $value): SettingsInterface
+    public function setEditorHeight(int $value): SettingsInterface
     {
-        $this->height = $value;
+        $this->editorHeight = $value;
+        return $this;
+    }
+
+    public function setDiffViewerHeight(int $value): SettingsInterface
+    {
+        $this->diffViewerHeight = $value;
         return $this;
     }
 

@@ -13,6 +13,7 @@
         _initialized = false;
         _navigator = null;
         _renderSideBySide = null;
+        _resizeInterval = null;
 
         constructor(options) {
             this._target = options._target;
@@ -83,7 +84,6 @@
                     original: monaco.editor.createModel(this._left.val(), lang),
                     modified: monaco.editor.createModel(this._right.val(), lang),
                 });
-                // this._model.onDidChangeContent($.proxy(this.onEdit, this));
                 resolve(true);
             });
         }
@@ -139,12 +139,25 @@
             });
         }
 
+        saveHeight(diffViewerHeight) {
+            this.saveSettings({ diffViewerHeight });
+        }
+
         onResize() {
             this._editor.layout({ height: this._target.height(), width: this._target.width() });
             if (!this._initialized) {
                 this._initialized = true;
+
                 return true;
             }
+            this._resizeInterval && clearInterval(this._resizeInterval);
+            this._resizeInterval = setInterval(() => {
+                clearInterval(this._resizeInterval);
+                if (!this.options.useFullHeight) {
+                    this.saveHeight(this._target.height());
+                }
+            }, 3000);
+
         }
     }
 
@@ -168,23 +181,6 @@
                 data[option].apply(data, Array.prototype.slice.call(args, 1));
             }
         });
-    };
-
-    $.fn.monacoDiffEditor.defaults = {
-        themeSelector: ".theme-selector",
-        editorConfig: {},
-        editorId: null,
-        inputLeftSelector: '[name="parent"]',
-        inputRightSelector: '[name="current"]',
-        userSettingsUrl: '#',
-        resizable: true,
-        minHeight: '5rem',
-        height: null,
-        width: null,
-        controllerId: '',
-        useFullHeight: '',
-        themes: {},
-        layoutSelector: '.layout-selector'
     };
 }
 

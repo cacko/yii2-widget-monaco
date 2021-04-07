@@ -30,8 +30,12 @@ class Controller extends \yii\web\Controller implements ControllerInterface
                     $this->userSettings->setTheme($value);
                     break;
 
-                case 'height':
-                    $this->userSettings->setHeight((int) $value);
+                case 'editorHeight':
+                    $this->userSettings->setEditorHeight((int) $value);
+                    break;
+
+                case 'diffViewrHeight':
+                    $this->userSettings->setDiffViewerHeight((int) $value);
                     break;
 
                 case 'renderSideBySide':

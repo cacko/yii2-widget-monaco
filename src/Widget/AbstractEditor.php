@@ -79,12 +79,6 @@ abstract class AbstractEditor extends InputWidget
             'theme' => $this->getTheme(),
         ]);
     }
-    protected function getHeight(): string
-    {
-        $userSettings = $this->userSettings;
-        $userHeight = $userSettings->getHeight();
-        return !empty($userHeight) ? $userHeight : ($this->height ?: 300);
-    }
 
     protected function getTheme(): string
     {

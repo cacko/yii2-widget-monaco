@@ -97,8 +97,8 @@
                 this.saveSettings({ theme }) && clearInterval(this._themeInterval), 3000);
         }
 
-        saveHeight(height) {
-            this.saveSettings({ height });
+        saveHeight(editorHeight) {
+            this.saveSettings({ editorHeight });
         }
 
         saveSettings(payload) {
@@ -149,21 +149,6 @@
                 data[option].apply(data, Array.prototype.slice.call(args, 1));
             }
         });
-    };
-
-    $.fn.monacoEditor.defaults = {
-        themeSelector: ".theme-selector",
-        editorConfig: {},
-        editorId: null,
-        inputSelector: null,
-        userSettingsUrl: '#',
-        resizable: true,
-        minHeight: '5rem',
-        height: null,
-        width: null,
-        useFullHeight: '',
-        themes: {},
-        broadcastSelector: '.cacko-widget-monaco'
     };
 })
     (jQuery);
