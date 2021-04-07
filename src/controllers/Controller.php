@@ -34,7 +34,7 @@ class Controller extends \yii\web\Controller implements ControllerInterface
                     $this->userSettings->setEditorHeight((int) $value);
                     break;
 
-                case 'diffViewrHeight':
+                case 'diffViewerHeight':
                     $this->userSettings->setDiffViewerHeight((int) $value);
                     break;
 
