@@ -8,7 +8,7 @@ composer require cacko/yii2-widget-monaco
 ```
 
 ## Demo
-Sorta demo and playground - https://cacko-yii2.herokuapp.com/monaco/widget, the source of that is at https://github.com/cacko/yii2-widgets
+Sorta demo and playground - https://yii.cacko.net/monaco/widget.
 
 ## Usage
 
