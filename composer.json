@@ -20,7 +20,7 @@
     "php": "~7.4.14",
     "ext-fileinfo": "*",
     "yiisoft/yii2": "~2.0.41",
-    "npm-asset/monaco-editor": "0.27.0",
+    "npm-asset/monaco-editor": "0.29.1",
     "scssphp/scssphp": "^1.4"
   },
   "extra": {
