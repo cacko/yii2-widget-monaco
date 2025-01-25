@@ -26,7 +26,7 @@ class EditorOptions extends Model implements JsonSerializable
     public string $layoutSelector = '.layout-selector';
     public string $broadcastSelector = '.cacko-widget-monaco';
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter($this->getAttributes(), fn ($val) => $val !== null);
     }
