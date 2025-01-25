@@ -17,7 +17,7 @@ class MonacoOptions extends Model implements JsonSerializable
     public bool $readOnly = false;
     public bool $renderSideBySide = false;
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter($this->getAttributes(), fn ($val) => $val !== null);
     }
